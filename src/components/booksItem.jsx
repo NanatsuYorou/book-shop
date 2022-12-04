@@ -1,7 +1,7 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Divider, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, CardMedia, Container, Divider, Typography } from '@mui/material'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import {buyBook} from '../store/slice'
+import {buyBook} from '../store/bookSlice'
 
 
 export default function BooksItem({id, name, author, img, price}) {
@@ -15,7 +15,7 @@ export default function BooksItem({id, name, author, img, price}) {
         component="img"
         title={name}
         alt={name}
-        sx={{height: 'auto', maxHeight: 300, width: 200, size: 'contain' }}
+        sx={{height: 'auto', maxHeight: 300, width: 200, size: 'contain', margin: '0 auto' }}
         />
             <CardContent>
                 <Typography
@@ -31,15 +31,12 @@ export default function BooksItem({id, name, author, img, price}) {
                     {author}
                 </Typography>
                 <Divider />
-                <Typography
-                variant="body2"
-                component="p"
-                >
-                    {price}
-                </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small" onClick={() => dispatch(buyBook({name, price, id}))}>Купить</Button>
+            <CardActions sx={{paddingLeft: '20px', paddingRight: '20px' }}>
+                <Typography variant="body2" component="p" sx={{fontWeight: 700}}>
+                    Цена: {price}
+                </Typography>
+                <Button sx={{marginLeft: 'auto'}} size="small" onClick={() => dispatch(buyBook({name, price, id}))}>Купить</Button>
             </CardActions>
     </Card>
   )

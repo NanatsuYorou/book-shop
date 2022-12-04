@@ -1,3 +1,4 @@
+import { Container } from '@mui/material';
 import './App.css';
 import BooksList from './components/booksList'
 import Header from './components/header';
@@ -9,8 +10,10 @@ function App() {
   return (
         <div className="App">
               <Header />
-              <BooksList />
-              <Cart />
+              <Container>
+                  <BooksList />
+                  <Cart />
+              </Container>
         </div>
   );
 }

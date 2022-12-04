@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const slice = createSlice({
-    name: "slice",
+const bookSlice = createSlice({
+    name: "bookSlice",
     initialState: {
         books: [
             {
@@ -54,6 +54,7 @@ const slice = createSlice({
     reducers: {
         buyBook(state, action){
             const toggledBook = state.books.find(book => book.id === action.payload.id)
+            toggledBook.id = new Date().toISOString()
             state.shoppingCart.push(toggledBook)
             state.totalPrice += toggledBook.price
         },
@@ -64,6 +65,6 @@ const slice = createSlice({
     }
 })
 
-export const {buyBook, removeBook} = slice.actions 
+export const {buyBook, removeBook} = bookSlice.actions 
 
-export default slice.reducer
+export default bookSlice.reducer

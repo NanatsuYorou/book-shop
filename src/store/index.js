@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import slice from "./slice";
+import bookSlice from "./bookSlice";
+import cartSlice from "./cartSlice";
 
 export default configureStore({
     reducer: {
-        app: slice,
+        app: bookSlice,
+        cart: cartSlice,
     },
 })
