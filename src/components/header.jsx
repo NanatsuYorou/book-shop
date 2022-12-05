@@ -1,10 +1,12 @@
 import { ShoppingBasket } from '@mui/icons-material'
-import { AppBar, IconButton, Toolbar, Typography} from '@mui/material'
+import { AppBar, IconButton, Toolbar, Typography, Badge} from '@mui/material'
 import {openCart} from '../store/cartSlice'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function Header() {
+
+  const cartLen = useSelector(state => state.app.shoppingCart).length
 
   const dispatch = useDispatch()
 
@@ -22,7 +24,12 @@ export default function Header() {
             color='inherit'
             onClick={() => dispatch(openCart())}
             >
+              <Badge
+              color="warning"
+              badgeContent={cartLen}
+              >
                 <ShoppingBasket />
+              </Badge>
             </IconButton>
         </Toolbar>
     </AppBar>

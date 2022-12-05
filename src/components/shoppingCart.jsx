@@ -4,6 +4,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {closeCart} from '../store/cartSlice'
 import CartItem from './shoppingCartItem'
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function ShoppingCart() {
     
@@ -19,26 +20,32 @@ export default function ShoppingCart() {
         anchor='right'
         open={cartIsOpen}
         onClose={() => dispatch(closeCart())}
+        sx={{width: '40%'}}
         >
-            <List sx={{width: '300px'}}>
+            <List >
                 <ListItem>
                     <ListItemIcon>
                         <ShoppingBasket />
                     </ListItemIcon>
                     <ListItemText primary="Корзина"/>
+                    <ListItemIcon>
+                        <CloseIcon onClick={() => (dispatch(closeCart()))}/>
+                    </ListItemIcon>
                 </ListItem>
-                <Divider />
+                <Divider sx={{mb: '10px'}} />
                 {cart.length !== 0 ? (cart.map(book => (
-                    <CartItem book={book}/>
+                    <CartItem key={book.id} book={book}/>
                 ))) : <ListItem>Корзина пуста!</ListItem>}
-            </List>
             {
             cart.length !== 0 &&
             <>
                 <Divider />
-                {totalPrice}
+                <ListItem sx={{fontWeight: 700}} item>
+                   Итого: {totalPrice}
+                </ListItem>
             </> 
             }
+            </List>
         </Drawer>
     </>
 
